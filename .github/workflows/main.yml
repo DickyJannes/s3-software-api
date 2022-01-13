@@ -30,6 +30,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./Dockerfile
+          file: ./docker-compose
           push: true
           tags: ${{ secrets.CI_REGISTRY_USER }}/cleanupapp:latest
