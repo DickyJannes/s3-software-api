@@ -1,0 +1,59 @@
+version: '3'
+
+services:
+  database:
+    networks:
+        - database
+    container_name: cleanupAppDatabase
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      # localhost port : container port
+      - "1433:1433"
+    restart: always
+    volumes:
+      - ./Data/mssql/data:/var/opt/mssql/data
+      - ./Data/mssql/log:/var/opt/mssql/log
+      - ./Data/mssql/secrets:/var/opt/mssql/secrets
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=m3ZS5g9YjPjct5am
+  
+  backend:
+    networks:
+      - database
+      - backend
+      # - frontend
+    container_name: cleanupAppBackend
+    depends_on:
+      - "database"
+    ports:
+      - "5000:5000"
+    restart: always
+    build: ./RestAPI/RestAPI
+    volumes:
+      - ./RestAPI:/usr/src/app
+    expose:
+      - 5000
+      
+  # frontend:
+  #   networks:
+  #     - frontend
+  #     - backend
+  #   depends_on:
+  #     - database
+  #   container_name: cleanupAppFrontend
+  #   build: ./Frontend
+  #   volumes:
+  #     - ./Frontend:/usr/src/app
+  #   ports:
+  #     - "19006:19006"
+  #     - "19000:19000"
+  #     - "19002:19002"
+
+networks:
+  backend:
+    driver: bridge
+  # frontend:
+  #   driver: bridge
+  database:
+    driver: bridge

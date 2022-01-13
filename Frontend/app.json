@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "S3Software",
+    "slug": "S3Software",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/broom.png",
+    "splash": {
+      "image": "./assets/images/broom.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/broom.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/gbLogo.png"
+    }
+  }
+}
