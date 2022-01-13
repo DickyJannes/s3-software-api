@@ -10,10 +10,10 @@ COPY ["./RestAPI/RestAPI/RestAPI.csproj", "./"]
 RUN dotnet restore "RestAPI.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "RestAPI.csproj" -c Release -o /app/build
+RUN dotnet build "./RestAPI/RestAPI/RestAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "RestAPI.csproj" -c Release -o /app/publish
+RUN dotnet publish "./RestAPI/RestAPI/RestAPI.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
